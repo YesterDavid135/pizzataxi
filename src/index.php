@@ -35,7 +35,7 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">Welcome to Pizzataxi</h1>
                         <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
-                        <a class="btn btn-primary btn-lg" href="#!">Order now</a>
+                        <a class="btn btn-primary btn-lg" href="order.php">Order now</a>
                     </div>
                 </div>
             </div>
