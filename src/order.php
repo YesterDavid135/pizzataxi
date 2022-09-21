@@ -76,7 +76,7 @@
                         if ($row["discount"])
                             print ('<div>
                                         <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
-                                        <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">10%</span></h4>
+                                        <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">' . $row['discount'].'%</span></h4>
                                     </div>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
                                 </div>');
