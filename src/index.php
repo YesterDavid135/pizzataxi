@@ -21,8 +21,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Order</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="order.php">Order</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                     </ul>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">Welcome to Pizzataxi</h1>
                         <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
-                        <a class="btn btn-primary btn-lg" href="#!">Order now</a>
+                        <a class="btn btn-primary btn-lg" href="order.php">Order now</a>
                     </div>
                 </div>
             </div>
