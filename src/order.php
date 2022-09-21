@@ -58,22 +58,30 @@
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
 
-                    print('<div class="col-lg-6 col-xxl-4 mb-5">
-                <div class="card bg-light border-0 h-100">
-                <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
-                    <div class="card-body ">
-                        <div class="text-center">
-                        <h2 class="fs-4 fw-bold">' . $row["name"] . '</h2>
-                        <p class="mb-0">' . $row["description"] . '</p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                    <p class="link-danger fw-bold">' . $row["price"].  ' CHF</p>
-                      <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                  </div>
-                    </div>
-                </div>
-            </div>');
+                    if ($row["discount"] != null) {
 
+                    }
+
+                    print('
+                    <div class="col-lg-6 col-xxl-4 mb-5">
+                        <div class="card bg-light border-0 h-100">
+                        <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
+                            <div class="card-body ">
+                                <div class="text-center">
+                                    <h2 class="fs-4 fw-bold">' . $row["name"] . '</h2>
+                                    <p class="mb-0">' . $row["description"] . '</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
+                                        <h4 class="link-dark fw-bold">' . $row["price"].  ' CHF <span class="badge bg-danger">10%</span></h4>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    ');
                 }
             }
             ?>
