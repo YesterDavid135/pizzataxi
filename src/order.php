@@ -61,10 +61,15 @@
                     print('<div class="col-lg-6 col-xxl-4 mb-5">
                 <div class="card bg-light border-0 h-100">
                 <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
-                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                        
+                    <div class="card-body ">
+                        <div class="text-center">
                         <h2 class="fs-4 fw-bold">' . $row["name"] . '</h2>
                         <p class="mb-0">' . $row["description"] . '</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <p class="link-danger fw-bold">' . $row["price"].  ' CHF</p>
+                      <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                  </div>
                     </div>
                 </div>
             </div>');
