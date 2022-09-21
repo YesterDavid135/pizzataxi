@@ -1,0 +1,11 @@
+.pizzaspin{
+    animation: pizzaspin 5s infinite linear;
+}
+@keyframes pizzaspin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
