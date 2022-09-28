@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -27,10 +30,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="order.php">Order</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
+                    <?php
+                    if (!isset($_SESSION['username'])) {
+                        print('
+                        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+                    ');
+                    } else {
+                        print('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -40,7 +53,13 @@
         <div class="container px-lg-5">
             <div class="p-4 p-lg-5 rounded-3 text-center">
                 <div class="m-4 m-lg-5">
-                    <h1 class="display-5 fw-bold">Welcome to Pizzataxi</h1>
+                    <?php
+                    if (!isset($_SESSION['username'])) {
+                        print('<h1 class="display-5 fw-bold">Welcome to Pizzataxi!</h1>');
+                    } else {
+                        print('<h1 class="display-5 fw-bold">Welcome back, ' . $_SESSION['username'] . '!</h1>');
+                    }
+                    ?>
                     <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
                     <a class="btn btn-primary btn-lg" href="order.php">Order now</a>
                 </div>
