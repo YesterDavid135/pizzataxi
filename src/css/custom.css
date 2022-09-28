@@ -1,3 +1,7 @@
+body {
+
+}
+
 .pizzaspin{
     animation: pizzaspin 5s infinite linear;
 }
