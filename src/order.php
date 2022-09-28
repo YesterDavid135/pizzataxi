@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -26,6 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="order.php">Order</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +36,7 @@
 <!-- Header-->
 <header class="py-5">
     <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+        <div class="p-4 p-lg-5 rounded-3 text-center">
             <div class="m-2 m-lg-0">
                 <h1 class="display-5 fw-bold">Order a pizza</h1>
             </div>
@@ -64,7 +67,7 @@
 
                     print('
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
+                        <div class="card border-0 h-100">
                         <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
                             <div class="card-body ">
                                 <div class="text-center">

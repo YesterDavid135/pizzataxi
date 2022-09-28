@@ -26,6 +26,7 @@
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="order.php">Order</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +34,7 @@
 <!-- Header-->
 <header class="py-5">
     <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+        <div class="p-4 p-lg-5 rounded-3 text-center">
             <div class="m-4 m-lg-5">
                 <div class="row justify-content-center">
                     <p class="col-3" style="font-size: 150px">4</p>
