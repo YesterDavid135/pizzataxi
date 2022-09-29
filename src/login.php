@@ -11,20 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['username'])) {
         $username = htmlspecialchars(trim($_POST['username']));
+        if (isset($_POST['password'])) {
+            $password = trim($_POST['password']);
 
-        if (empty($username) || !preg_match("/(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,30}/", $username)) {
-            $error .= "Der Benutzername entspricht nicht dem geforderten Format.<br />";
         }
     } else {
-        $error .= "Geben Sie bitte den Benutzername an.<br />";
-    }
-    if (isset($_POST['password'])) {
-        $password = trim($_POST['password']);
-        if (empty($password) || !preg_match("/(?=^.{8,255}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) {
-            $error .= "Das Passwort entspricht nicht dem geforderten Format.<br />";
-        }
-    } else {
-        $error .= "Geben Sie bitte das Passwort an.<br />";
+        $error .= "Please provide a username and a password";
     }
 
     if (empty($error)) {
@@ -57,10 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 die();
 
             } else {
-                $error .= "Benutzername oder Passwort sind falsch";
+                $error .= "Username or password is wrong";
             }
         } else {
-            $error .= "Benutzername oder Passwort sind falsch";
+            $error .= "Username or password is wrong";
         }
     }
 }
@@ -69,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -113,45 +105,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </nav>
-<!-- Header-->
-<header class="py-5">
-    <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 rounded-3 text-center">
-            <div class="m-4 m-lg-5">
-                <h1 class="display-5 fw-bold">Login</h1>
+<!-- Page Content-->
+<div class="login-box bg-dark">
+    <h2>Login</h2>
+    <form action="" method="post" id="loginform">
+        <div class="user-box">
+            <input type="text" name="username" required="">
+            <label>Username</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+        </div>
+        <p class="danger error"><?php echo $error ?></p>
+        <div class="button-form">
+            <a id="submit" onclick="document.getElementById('loginform').submit()">
+                Submit
+            </a>
+            <div id="register">
+                Don't have an account ?
+                <a href="#">
+                    Register
+                </a>
             </div>
         </div>
-    </div>
-</header>
-<!-- Page Content-->
-<div class="container px-lg-5">
-    <div class="p-4 p-lg-5 rounded-3">
-        <div class="m-4 m-lg-5">
-
-            <?php
-            if (!empty($message)) {
-                echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
-            } else if (!empty($error)) {
-                echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
-            }
-            ?>
-
-            <form action="" method="post">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" id="username">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+    </form>
 </div>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark fixed-bottom">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->
