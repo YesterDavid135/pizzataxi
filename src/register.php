@@ -12,50 +12,53 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $firstname = htmlspecialchars(trim($_POST['firstname']));
 
         if (empty($firstname) || strlen($firstname) > 30) {
-            $error .= "Geben Sie bitte einen korrekten Vornamen ein.<br />";
+            $error .= "Please enter e valid firstname<br />";
         }
     } else {
-        $error .= "Geben Sie bitte einen Vornamen ein.<br />";
+        $error .= "Please enter e valid firstname<br />";
     }
 
     if (isset($_POST['lastname'])) {
         $lastname = htmlspecialchars(trim($_POST['lastname']));
 
         if (empty($lastname) || strlen($lastname) > 30) {
-            $error .= "Geben Sie bitte einen korrekten Nachname ein.<br />";
+            $error .= "Please enter e valid lastname<br />";
         }
     } else {
-        $error .= "Geben Sie bitte einen Nachname ein.<br />";
+        $error .= "Please enter e valid lastname<br />";
     }
 
     if (isset($_POST['email'])) {
         $email = htmlspecialchars(trim($_POST['email']));
 
         if (empty($email) || strlen($email) > 100 || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            $error .= "Geben Sie bitte eine korrekten Emailadresse ein.<br />";
+            $error .= "Please enter e valid mail address<br />";
         }
     } else {
-        $error .= "Geben Sie bitte eine Emailadresse ein.<br />";
+        $error .= "Please enter e valid mail address<br />";
     }
 
     if (isset($_POST['username'])) {
         $username = htmlspecialchars(trim($_POST['username']));
 
         if (empty($username) || !preg_match("/[a-zA-Z]{6,30}/", $username)) {
-            $error .= "Geben Sie bitte einen korrekten Usernamen ein.<br />";
+            $error .= "Please enter e valid username<br />";
         }
     } else {
-        $error .= "Geben Sie bitte einen Username ein.<br />";
+        $error .= "Please enter e valid username<br />";
     }
 
     if (isset($_POST['password'])) {
         $password = trim($_POST['password']);
 
         if (empty($password) || !preg_match("/^([\W\w])([^\s]){6,100}$/", $password)) {
-            $error .= "Geben Sie bitte einen korrektes Password ein.<br />";
+            $error .= "Please enter e valid password<br >";
         }
     } else {
-        $error .= "Geben Sie bitte ein Password ein.<br />";
+        $error .= "Please enter e valid password<br />";
+    }
+    if (!isset($_POST['password_conf']) || $_POST['password_conf'] != $_POST['password']) {
+        $error .= "Passwords doesn't match";
     }
 
     if (empty($error)) {
@@ -172,6 +175,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" id="password" required maxlength="255">
+                </div>
+                <div class="mb-3">
+                    <label for="password_conf" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" name="password_conf" id="password_conf" required
+                           maxlength="255">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
