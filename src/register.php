@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['username'])) {
         $username = htmlspecialchars(trim($_POST['username']));
 
-        if (empty($username) || !preg_match("/(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,30}/", $username)) {
+        if (empty($username) || !preg_match("/[a-zA-Z]{6,30}/", $username)) {
             $error .= "Geben Sie bitte einen korrekten Usernamen ein.<br />";
         }
     } else {
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (isset($_POST['password'])) {
         $password = trim($_POST['password']);
 
-        if (empty($password) || !preg_match("/(?=^.{8,255}$)((?=.*\d+)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) {
+        if (empty($password) || !preg_match("/^([\W\w])([^\s]){6,100}$/", $password)) {
             $error .= "Geben Sie bitte einen korrektes Password ein.<br />";
         }
     } else {
@@ -77,10 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         if (empty($error)) {
-            $message .= "Die Daten wurden erfolgreich in die Datenbank geschrieben<br/ >";
-            $username = $password = $firstname = $lastname = $email =  '';
+            $result = $link->query("SELECT LAST_INSERT_ID()");
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['userid'] = $result->fetch_assoc()['LAST_INSERT_ID()'];
             $link->close();
-            header('Location: login.php');
+            header('Location: index.php');
             exit();
         }
     }
@@ -134,19 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
 </nav>
 <!-- Header-->
-<header class="py-5">
-    <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 rounded-3 text-center">
-            <div class="m-4 m-lg-5">
-                <h1 class="display-5 fw-bold">Create a Account</h1>
-            </div>
-        </div>
-    </div>
+<div class="p-4 p-lg-5 rounded-3 text-center">
+    <h1 class="display-5 fw-bold">Create a Account</h1>
+</div>
 </header>
 <!-- Page Content-->
 <div class="container px-lg-5">
     <div class="p-4 p-lg-5 rounded-3">
-        <div class="m-4 m-lg-5">
+        <div class="m-lg-5 p-4">
             <?php
             // Ausgabe der Fehlermeldungen
             if (!empty($error)) {
