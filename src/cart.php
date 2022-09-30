@@ -63,7 +63,7 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="order.php">Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.php">Order</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="cart.php">Cart</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
@@ -134,7 +134,12 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
         }
         ?>
         <div class="col-5"></div>
+        <?php if ($_SESSION['loggedin']) {?>
         <button class="btn btn-success">Place Order</button>
+        <?php } else {?>
+            <button class="btn btn-warning">Log in to Place Order</button>
+
+        <?php }?>
     </div>
 
     </div>

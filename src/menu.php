@@ -29,7 +29,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link active" href="order.php">Order</a></li>
+                <li class="nav-item"><a class="nav-link active" href="menu.php">Order</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
                 <?php
@@ -51,7 +51,7 @@ session_start();
     <div class="container px-lg-5">
         <div class="p-4 p-lg-5 rounded-3 text-center">
             <div class="m-2 m-lg-0">
-                <h1 class="display-5 fw-bold">Order a pizza</h1>
+                <h1 class="display-5 fw-bold">Choose a pizza</h1>
             </div>
         </div>
     </div>
@@ -73,42 +73,40 @@ session_start();
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
-
-
-
-                    print('
+                    ?>
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card border-0 h-100">
-                        <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
+                            <img class="card-img-top" src="assets/pizzas/<?= $row["image"] ?>" alt="Pizza image"
+                                 style=" display: block">
                             <div class="card-body ">
                                 <div class="text-center">
-                                    <h2 class="fs-4 fw-bold">' . $row["name"] . '</h2>
-                                    <p class="mb-0">' . $row["description"] . '</p>
+                                    <h2 class="fs-4 fw-bold"><?= $row["name"] ?></h2>
+                                    <p class="mb-0"><?= $row["description"] ?></p>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center">');
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <?php if ($row["discount"]) { ?>
+                                        <div>
+                                            <p class="link-dark fw-bold text-decoration-line-through"><?= $row["price"] ?>
+                                                CHF </p>
+                                            <h4 class="link-danger fw-bold "><?= ($row["price"] / 100) * (100 - $row["discount"]) ?>
+                                                CHF <span class="badge bg-danger"><?= $row["discount"] ?>%</span></h4>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div>
+                                            <h4 class="link-dark fw-bold"><?= $row["price"] ?> CHF</h4>
+                                        </div> <?php } ?>
 
-                        if ($row["discount"])
-                            print ('<div>
-                                        <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
-                                        <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">' . $row['discount'].'%</span></h4>
-                                    </div>
-                                    ');
-                        else
-                            print ('
-                            <div>
-                                        <h4 class="link-dark fw-bold">' . $row["price"].  ' CHF</h4>
-                                    </div>');
+                                    <form action="cart.php" method="post">
+                                        <input type="hidden" name="pizza_id" value="<?= $row["pizza_id"] ?>">
 
-                        print('<form action="cart.php" method="post">
-                                    <input type="hidden" name="pizza_id" value="' . $row["pizza_id"] . '">
-
-                                    <button type="submit" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Add to cart
+                                        </button>
                                     </form>
-                                </div>            
+                                </div>
                             </div>
                         </div>
                     </div>
-                    ');
+                    <?php
                 }
             }
 
