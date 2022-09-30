@@ -61,9 +61,7 @@
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
 
-                    if ($row["discount"] != null) {
 
-                    }
 
                     print('
                     <div class="col-lg-6 col-xxl-4 mb-5">
@@ -81,23 +79,26 @@
                                         <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
                                         <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">' . $row['discount'].'%</span></h4>
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>');
+                                    ');
                         else
                             print ('
                             <div>
                                         <h4 class="link-dark fw-bold">' . $row["price"].  ' CHF</h4>
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
-                                </div>');
+                                    </div>');
 
-                        print('            
+                        print('<form action="cart.php" method="post">
+                                    <input type="hidden" name="pizza_id" value="' . $row["pizza_id"] . '">
+
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    </form>
+                                </div>            
                             </div>
                         </div>
                     </div>
                     ');
                 }
             }
+
             ?>
         </div>
     </div>
