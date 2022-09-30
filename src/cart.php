@@ -135,9 +135,9 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
         ?>
         <div class="col-5"></div>
         <?php if ($_SESSION['loggedin']) {?>
-        <button class="btn btn-success">Place Order</button>
+        <a class="btn btn-success" href="order.php">Place Order</a>
         <?php } else {?>
-            <button class="btn btn-warning">Log in to Place Order</button>
+            <a class="btn btn-warning" href="login.php">Log in to Place Order</a>
 
         <?php }?>
     </div>
