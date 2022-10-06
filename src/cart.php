@@ -86,7 +86,7 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
         <?php
         $cartarray = $_SESSION['cart'];
 
-        $sql = "SELECT * FROM pizzas where pizza_id IN (".implode(array_keys($cartarray), ',').")";
+        $sql = "SELECT * FROM pizzas where pizza_id IN (" . implode(',', array_keys($cartarray)) . ")";
 
         $result = $link->query($sql);
 
