@@ -53,24 +53,9 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
 </head>
 <body>
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container px-lg-5">
-        <a class="navbar-brand" href="#!">Pizzataxi</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.php">Order</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="cart.php">Cart</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php
+include('navbar.php');
+?>
 <header class="py-5">
     <div class="container px-lg-5">
         <div class="p-4 p-lg-5 rounded-3 text-center">
@@ -85,61 +70,67 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
         <!-- Page Features-->
         <?php
         $cartarray = $_SESSION['cart'];
+        if (!isset($cartarray) || count($cartarray) <= 0) {
+            echo "No Items in Cart";
+        } else {
 
-        $sql = "SELECT * FROM pizzas where pizza_id IN (" . implode(',', array_keys($cartarray)) . ")";
 
-        $result = $link->query($sql);
+            $sql = "SELECT * FROM pizzas where pizza_id IN (" . implode(',', array_keys($cartarray)) . ")";
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-               ?>
-                <div class="row gx-lg-5">
-                    <div class="card rounded-3 mb-4">
-                        <div class="card-body p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img
-                                            src="assets/pizzas/<?=$row['image']?>"
-                                            class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <p class="lead fw-normal mb-2"><?=$row['name']?> </p>
-                                    <p><?=$row['description']?></p>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                    <button class="btn btn-link px-2">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
+            $result = $link->query($sql);
 
-                                    <input id="form1" min="0" name="quantity" value="<?=$cartarray[$row['pizza_id']]?>" type="number"
-                                           class="form-control form-control-sm"/>
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+                    <div class="row gx-lg-5">
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img
+                                                src="assets/pizzas/<?=$row['image']?>"
+                                                class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2"><?=$row['name']?> </p>
+                                        <p><?=$row['description']?></p>
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                        <button class="btn btn-link px-2">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
 
-                                    <button class="btn btn-link px-2">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <h5 class="mb-0">CHF <?=$row['price']?></h5>
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                    <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                        <input id="form1" min="0" name="quantity" value="<?=$cartarray[$row['pizza_id']]?>" type="number"
+                                               class="form-control form-control-sm"/>
+
+                                        <button class="btn btn-link px-2">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0">CHF <?=$row['price']?></h5>
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <?php
+                    <?php
+                }
             }
-        }
-        ?>
-        <div class="col-5"></div>
-        <?php if ($_SESSION['loggedin']) {?>
-        <a class="btn btn-success" href="order.php">Place Order</a>
-        <?php } else {?>
-            <a class="btn btn-warning" href="login.php">Log in to Place Order</a>
 
-        <?php }?>
+            ?>
+            <div class="col-5"></div>
+            <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { ?>
+                <a class="btn btn-success" href="order.php">Place Order</a>
+            <?php } else { ?>
+                <a class="btn btn-warning" href="login.php">Log in to Place Order</a>
+
+            <?php }
+        } ?>
     </div>
 
     </div>
