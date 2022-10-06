@@ -19,11 +19,35 @@ session_start();
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 <!-- Responsive navbar-->
-<?php
-include('navbar.php');
-?>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-lg-5">
+        <a class="navbar-brand" href="#!">Pizzataxi</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="menu.php">Order</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                <li class="nav-item"><a class="nav-link active" href="about.php">About Us</a></li>
+                <?php
+                if (!isset($_SESSION['username'])) {
+                    print('
+                        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+                    ');
+                } else {
+                    print('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+</nav>
 <!-- Header-->
 <header class="py-5">
     <div class="container px-lg-5">
@@ -39,12 +63,12 @@ include('navbar.php');
     <div class="p-4 p-lg-5 rounded-3 text-center">
         <div class="m-4 m-lg-5">
             <p class="fs-4">This is a school project. Please do NOT give us your credit card details. (If you really want to, you can still do it.)</p>
-            <a class="btn btn-warning btn-lg" href="https://www.google.com/search?q=Order+Pizza&rlz=1C1GCEU_enCH927CH927&oq=order+pizza&aqs=chrome..69i57j0i512j0i457i512j0i512j0i22i30l2j69i60l2.5303j0j7&sourceid=chrome&ie=UTF-8">Order a real pizza now!</a>
+            <a class="btn btn-primary btn-lg" href="https://www.google.com/search?q=Order+Pizza&rlz=1C1GCEU_enCH927CH927&oq=order+pizza&aqs=chrome..69i57j0i512j0i457i512j0i512j0i22i30l2j69i60l2.5303j0j7&sourceid=chrome&ie=UTF-8">Order a real pizza now!</a>
         </div>
     </div>
 </div>
 <!-- Footer-->
-<footer class="py-5 bg-dark mt-auto">
+<footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->

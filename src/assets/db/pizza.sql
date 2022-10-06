@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 28, 2022 at 12:12 PM
+-- Generation Time: Sep 30, 2022 at 10:18 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -30,9 +30,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
                           `order_id` int(11) NOT NULL,
-                          `timestamp` timestamp NULL DEFAULT NULL,
                           `fk_user` int(11) DEFAULT NULL,
-                          `status` int(11) NOT NULL DEFAULT '0'
+                          `status` int(11) NOT NULL DEFAULT '0',
+                          `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -44,7 +44,9 @@ CREATE TABLE `orders` (
 DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (
                                `id_order_items` int(11) NOT NULL,
+                               `quantity` int(11) DEFAULT NULL,
                                `fk_order` int(11) NOT NULL,
+                               `discount` double DEFAULT NULL,
                                `fk_pizza` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -115,8 +117,8 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
     ADD PRIMARY KEY (`id_order_items`),
     ADD UNIQUE KEY `id_order_items` (`id_order_items`),
-    ADD KEY `fk_order` (`fk_order`),
-    ADD KEY `fk_pizza` (`fk_pizza`);
+    ADD KEY `fk_pizza` (`fk_pizza`),
+    ADD KEY `fk_order` (`fk_order`);
 
 --
 -- Indexes for table `pizzas`
@@ -134,6 +136,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+    MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_items`

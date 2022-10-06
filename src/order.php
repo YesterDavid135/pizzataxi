@@ -1,104 +1,46 @@
-<!DOCTYPE html>
 <?php
 session_start();
+require_once "config.php";
+
+if (!$_SESSION['loggedin']) {
+    echo "Please log in to order a pizza";
+    exit();
+}
+if (count($_SESSION['cart']) < 1) {
+    echo "Please add at least one pizza in your cart";
+    exit();
+}
+
+// Create Order
+$query = 'INSERT INTO orders (fk_user) values (?)';
+$stmt = $link->prepare($query);
+
+if (!$stmt->bind_param('i', $_SESSION['userid'])) {
+    echo 'bind_param() failed ' . $link->error . '<br />';
+    exit();
+}
+if (!$stmt->execute()) {
+    echo 'execute() failed ' . $link->error . '<br />';
+    exit();
+}
+
+$orderid = $link->query("SELECT LAST_INSERT_ID()");
+$orderid = $orderid->fetch_assoc()['LAST_INSERT_ID()'];
+
+//Create Order Items
+
+foreach (array_keys($_SESSION['cart']) as $key) {
+    $query = 'INSERT INTO order_items (quantity, fk_order, fk_pizza) values (?, ?, ?)';
+    $stmt = $link->prepare($query);
+    if (!$stmt->bind_param('iii', $_SESSION['cart'][$key], $orderid, $key)) {
+        echo 'bind_param() failed ' . $link->error . '<br />';
+        exit();
+    }
+    if (!$stmt->execute()) {
+        echo 'execute() failed ' . $link->error . '<br />';
+        exit();
+    }
+}
+$_SESSION['cart'] = array();
+header('Location: success.php');
 ?>
-<html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <title>Pizzataxi</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
-            crossorigin="anonymous"></script>
-</head>
-<body class="d-flex flex-column min-vh-100">
-<!-- Responsive navbar-->
-<?php
-include('navbar.php');
-?>
-<!-- Header-->
-<header class="py-5">
-    <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 rounded-3 text-center">
-            <div class="m-2 m-lg-0">
-                <h1 class="display-5 fw-bold">Order a pizza</h1>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Page Content-->
-<section class="pt-4">
-    <div class="container px-lg-5">
-        <!-- Page Features-->
-        <div class="row gx-lg-5">
-            <?php
-            // Include config file
-            require_once "config.php";
-
-            // Prepare a select statement
-            $sql = "SELECT * FROM pizzas where active = 1";
-
-            $result = $link->query($sql);
-
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-
-                    if ($row["discount"] != null) {
-
-                    }
-
-                    print('
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card border-0 h-100">
-                        <img class="card-img-top" src="assets/pizzas/' . $row["image"] . '" alt="Pizza image" style=" display: block">
-                            <div class="card-body ">
-                                <div class="text-center">
-                                    <h2 class="fs-4 fw-bold">' . $row["name"] . '</h2>
-                                    <p class="mb-0">' . $row["description"] . '</p>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">');
-
-                        if ($row["discount"])
-                            print ('<div>
-                                        <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
-                                        <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">' . $row['discount'].'%</span></h4>
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-outline-dark">Add to cart</button>
-                                </div>');
-                        else
-                            print ('
-                            <div>
-                                        <h4 class="link-dark fw-bold">' . $row["price"].  ' CHF</h4>
-                                    </div>
-                                    <button type="button" class="btn btn-sm btn-outline-dark">Add to cart</button>
-                                </div>');
-
-                        print('            
-                            </div>
-                        </div>
-                    </div>
-                    ');
-                }
-            }
-            ?>
-        </div>
-    </div>
-</section>
-<!-- Footer-->
-<footer class="py-5 bg-dark mt-auto">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
-</footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-</body>
-</html>
