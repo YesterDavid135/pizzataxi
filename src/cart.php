@@ -69,11 +69,10 @@ include('navbar.php');
     <div class="container px-lg-5">
         <!-- Page Features-->
         <?php
-        $cartarray = $_SESSION['cart'];
-        if (!isset($cartarray) || count($cartarray) <= 0) {
+        if (!isset($_SESSION['cart']) || count($_SESSION['cart']) <= 0) {
             echo "No Items in Cart";
         } else {
-
+            $cartarray = $_SESSION['cart'];
 
             $sql = "SELECT * FROM pizzas where pizza_id IN (" . implode(',', array_keys($cartarray)) . ")";
 
