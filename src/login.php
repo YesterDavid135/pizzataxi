@@ -58,10 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -78,61 +77,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<?php
+include('navbar.php');
+?>
+<!-- Header-->
+<header class="py-5">
     <div class="container px-lg-5">
-        <a class="navbar-brand" href="#!">Pizzataxi</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="order.php">Order</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
-                <?php
-                if (!isset($_SESSION['username'])) {
-                    print('
-                        <li class="nav-item"><a class="nav-link active" href="login.php">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                    ');
-                } else {
-                    print('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
-                }
-                ?>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- Page Content-->
-<div class="login-box bg-dark">
-    <h2>Login</h2>
-    <form action="" method="post" id="loginform">
-        <div class="user-box">
-            <input type="text" name="username" required="">
-            <label>Username</label>
-        </div>
-        <div class="user-box">
-            <input type="password" name="password" required="">
-            <label>Password</label>
-        </div>
-        <p class="danger error"><?php echo $error ?></p>
-        <div class="button-form">
-            <a id="submit" onclick="document.getElementById('loginform').submit()">
-                Submit
-            </a>
-            <div id="register">
-                Don't have an account ?
-                <a href="register.php">
-                    Register
-                </a>
+        <div class="p-4 p-lg-5 rounded-3 text-center">
+            <div class="m-2 m-lg-0">
+                <h1 class="display-5 fw-bold">Login</h1>
             </div>
         </div>
-    </form>
+    </div>
+</header>
+<!-- Page Content-->
+<div class="container px-lg-5">
+    <div class="p-4 p-lg-5 rounded-3">
+        <div class="m-lg-5 p-4">
+            <?php
+            // Ausgabe der Fehlermeldungen
+            if (!empty($error)) {
+                echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
+            } else if (!empty($message)) {
+                echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
+            }
+            ?>
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 <!-- Footer-->
-<footer class="py-5 bg-dark fixed-bottom">
+<footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->
