@@ -18,7 +18,7 @@ session_start();
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- Responsive navbar-->
 <?php
 include('navbar.php');
@@ -71,14 +71,14 @@ include('navbar.php');
                                         <p class="link-dark fw-bold text-decoration-line-through">' . $row["price"].  ' CHF </p>
                                         <h4 class="link-danger fw-bold ">' .  ($row["price"] / 100) * (100 - $row['discount']) .  ' CHF <span class="badge bg-danger">' . $row['discount'].'%</span></h4>
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    <button type="button" class="btn btn-sm btn-outline-dark">Add to cart</button>
                                 </div>');
                         else
                             print ('
                             <div>
                                         <h4 class="link-dark fw-bold">' . $row["price"].  ' CHF</h4>
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Add to cart</button>
+                                    <button type="button" class="btn btn-sm btn-outline-dark">Add to cart</button>
                                 </div>');
 
                         print('            
@@ -93,7 +93,7 @@ include('navbar.php');
     </div>
 </section>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark mt-auto">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->

@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- Responsive navbar-->
 <?php
 include('navbar.php');
@@ -162,13 +162,13 @@ include('navbar.php');
                     <input type="password" class="form-control" name="password_conf" id="password_conf" required
                            maxlength="255">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-dark">Submit</button>
             </form>
         </div>
     </div>
 </div>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark mt-auto">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->

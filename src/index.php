@@ -19,7 +19,7 @@ session_start();
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
                 crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
     <!-- Responsive navbar-->
     <?php
     include('navbar.php');
@@ -37,7 +37,7 @@ session_start();
                     }
                     ?>
                     <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
-                    <a class="btn btn-primary btn-lg" href="order.php">Order now</a>
+                    <a class="btn btn-warning btn-lg" href="order.php">Order now</a>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ session_start();
                 <div class="col-lg-6 col-xxl-4 mb-5">
                     <div class="card border-0 h-100">
                         <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
+                            <div class="feature bg-dark bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bag-check"></i></div>
                             <h2 class="fs-4 fw-bold">Fresh ingredients</h2>
                             <p class="mb-0">Every of our ingredients is from our own garden or barn</p>
                         </div>
@@ -59,7 +59,7 @@ session_start();
                 <div class="col-lg-6 col-xxl-4 mb-5">
                     <div class="card border-0 h-100">
                         <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-cloud-download"></i></div>
+                            <div class="feature bg-dark bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-box-seam"></i></div>
                             <h2 class="fs-4 fw-bold">No Delivery Fee</h2>
                             <p class="mb-0">Our Pizzas will come to you without a Delivery Fee</p>
                         </div>
@@ -68,36 +68,9 @@ session_start();
                 <div class="col-lg-6 col-xxl-4 mb-5">
                     <div class="card border-0 h-100">
                         <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-card-heading"></i></div>
+                            <div class="feature bg-dark bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-clock"></i></div>
                             <h2 class="fs-4 fw-bold">Fast Delivery</h2>
                             <p class="mb-0">We only need 20minutes per Delivery</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xxl-4 mb-5">
-                    <div class="card border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
-                            <h2 class="fs-4 fw-bold">Feature boxes</h2>
-                            <p class="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xxl-4 mb-5">
-                    <div class="card border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>
-                            <h2 class="fs-4 fw-bold">Simple clean code</h2>
-                            <p class="mb-0">We keep our dependencies up to date and squash bugs as they come!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xxl-4 mb-5">
-                    <div class="card border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-patch-check"></i></div>
-                            <h2 class="fs-4 fw-bold">A name you trust</h2>
-                            <p class="mb-0">Start Bootstrap has been the leader in free Bootstrap templates since 2013!</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +78,7 @@ session_start();
         </div>
     </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-5 bg-dark mt-auto">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
