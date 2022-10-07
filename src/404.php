@@ -41,7 +41,7 @@ include('navbar.php');
 </header>
 
 <!-- Footer-->
-<footer class="py-5 bg-dark mt-0">
+<footer class="py-5 bg-dark mt-auto">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->
