@@ -30,11 +30,11 @@ session_start();
             <div class="p-4 p-lg-5 rounded-3 text-center">
                 <div class="m-4 m-lg-5">
                     <?php
-                    if (!isset($_SESSION['username'])) {
-                        print('<h1 class="display-5 fw-bold">Welcome to Pizzataxi!</h1>');
-                    } else {
-                        print('<h1 class="display-5 fw-bold">Welcome back, ' . $_SESSION['username'] . '!</h1>');
-                    }
+                    if (!isset($_SESSION['username'])) { ?>
+                        <h1 class="display-5 fw-bold">Welcome to Pizzataxi!</h1>
+                    <?php } else { ?>
+                        <h1 class="display-5 fw-bold">Welcome back, <?= $_SESSION['username'] ?>!</h1>
+                    <?php }
                     ?>
                     <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
                     <a class="btn btn-warning btn-lg" href="menu.php">Order now</a>

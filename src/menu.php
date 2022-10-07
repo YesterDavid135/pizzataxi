@@ -76,7 +76,7 @@ include('navbar.php');
                                     <form action="cart.php" method="post">
                                         <input type="hidden" name="pizza_id" value="<?= $row["pizza_id"] ?>">
 
-                                        <button type="submit" class="btn btn-sm btn-outline-primary">Add to cart
+                                        <button type="submit" class="btn btn-sm btn-outline-dark">Add to cart
                                         </button>
                                     </form>
                                 </div>
@@ -92,7 +92,7 @@ include('navbar.php');
     </div>
 </section>
 <!-- Footer-->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark mt-auto">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->

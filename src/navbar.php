@@ -7,19 +7,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="menu.php">Order</a></li>
-                <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.php">About Us</a></li>
+
                 <?php
-                if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) {
-                    print('
-                        <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                    ');
-                } else {
-                    print('<li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>');
+                $site = $_SERVER['REQUEST_URI'];
+                $site = substr($site, strripos($site, '/') + 1);
+                if ($site == "") {
+                    $site = "index.php";
                 }
+                $site = strtolower($site);
+                ?>
+                <li class="nav-item"><a class="nav-link <?= $site == "index.php" ? "active" : "" ?>" href="index.php">Home</a>
+                </li>
+                <li class="nav-item"><a class="nav-link <?= $site == "menu.php" ? "active" : "" ?>"
+                                        href="menu.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link <?= $site == "cart.php" ? "active" : "" ?>"
+                                        href="cart.php">Cart</a></li>
+                <li class="nav-item"><a class="nav-link <?= $site == "about.php" ? "active" : "" ?>" href="about.php">About
+                        Us</a></li>
+                <li class="nav-item"><a class="nav-link <?= $site == "imprint.php" ? "active" : "" ?>"
+                                        href="imprint.php">Imprint</a></li>
+                <?php
+                if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { ?>
+
+                    <li class="nav-item"><a class="nav-link <?= $site == "login.php" ? "active" : "" ?>"
+                                            href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link <?= $site == "register.php" ? "active" : "" ?>"
+                                            href="register.php">Register</a></li>
+                    <?php
+                } else { ?>
+                    <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+                <?php }
                 ?>
             </ul>
         </div>
