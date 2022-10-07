@@ -36,7 +36,7 @@ session_start();
                         <h1 class="display-5 fw-bold">Welcome back, <?= $_SESSION['username'] ?>!</h1>
                     <?php }
                     ?>
-                    <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
+                    <p class="fs-4">Pizzataxi will deliver the best pizzas directly in your mouth</p>
                     <a class="btn btn-danger btn-lg" href="menu.php">Order now</a>
                 </div>
             </div>
