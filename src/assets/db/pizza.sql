@@ -57,7 +57,7 @@ CREATE TABLE `order_items` (
 --
 
 DROP TABLE IF EXISTS `pizzas`;
-CREATE TABLE `pizzas` (
+CREATE TABLE `pizzas`(
                           `pizza_id` int(11) NOT NULL,
                           `name` varchar(50) NOT NULL,
                           `description` varchar(255) DEFAULT NULL,
@@ -65,24 +65,26 @@ CREATE TABLE `pizzas` (
                           `discount` double DEFAULT NULL,
                           `image` varchar(50) DEFAULT NULL,
                           `active` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
 
 --
 -- Dumping data for table `pizzas`
 --
 
-INSERT INTO `pizzas` (`pizza_id`, `name`, `description`, `price`, `discount`, `image`, `active`) VALUES
-                                                                                                     (1, 'Margherita', 'The standard', 12, NULL, 'margherita.jpg', 1),
-                                                                                                     (2, 'Prosciutto', 'With happy pigs', 17, NULL, 'prosciutto.jpg', 1),
-                                                                                                     (3, 'Salami', 'With unhappy pigs', 17, NULL, 'salami.jpg', 1),
-                                                                                                     (4, 'Funghi', 'With mario\'s mushrooms', 16, NULL, 'funghi.jpg', 1),
-                                                                                                     (5, 'Hawaii', 'No..', 99, NULL, 'hawaii.jpg', 1),
-                                                                                                     (6, 'Piccante', 'You are hot', 17, NULL, 'piccante.jpg', 1),
-                                                                                                     (7, 'Tonno', 'Greta loves u', 17, NULL, 'tonno.jpg', 1),
-                                                                                                     (8, 'Quattro formaggi', '1kg of pleasure', 18, NULL, '4formaggi.jpg', 1),
-                                                                                                     (9, 'Napoli', 'Delicious', 15, 11, 'napoli.jpg', 1),
-                                                                                                     (10, 'Speciale', 'What is wrong with u?', 20, NULL, 'speciale.jpg', 1),
-                                                                                                     (11, 'Swiss', 'we don\'t eat it ourselves, we just sell it to tourists', 22, NULL, 'swiss.jpg', 1);
+INSERT INTO `pizzas` (`pizza_id`, `name`, `description`, `price`, `discount`, `image`, `active`)
+VALUES (1, 'Margherita', 'The standard', 12, NULL, 'margherita.jpg', 1),
+       (2, 'Prosciutto', 'With happy pigs', 17, NULL, 'prosciutto.jpg', 1),
+       (3, 'Salami', 'With unhappy pigs', 17, NULL, 'salami.jpg', 1),
+       (4, 'Brokkoli', 'Only for Vivi', 15.5, NULL, 'brokkoli.jpg', 1),
+       (5, 'Funghi', 'With mario\'s mushrooms', 16, NULL, 'funghi.jpg', 1),
+       (6, 'Hawaii', 'No..', 99, NULL, 'hawaii.jpg', 1),
+       (7, 'Piccante', 'You are hot', 17, NULL, 'piccante.jpg', 1),
+       (8, 'Tonno', 'Greta loves u', 17, NULL, 'tonno.jpg', 1),
+       (9, 'Quattro formaggi', '1kg of pleasure', 18, NULL, '4formaggi.jpg', 1),
+       (10, 'Napoli', 'Delicious', 15, 11, 'napoli.jpg', 1),
+       (11, 'Speciale', 'What is wrong with u?', 20, NULL, 'speciale.jpg', 1),
+       (12, 'Swiss', 'we don\'t eat it ourselves, we just sell it to tourists', 22, NULL, 'swiss.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -91,8 +93,9 @@ INSERT INTO `pizzas` (`pizza_id`, `name`, `description`, `price`, `discount`, `i
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-                         `user_id` int(11) NOT NULL,
+CREATE TABLE `users`
+(
+    `user_id`                        int(11)    NOT NULL,
                          `username` varchar(30) NOT NULL,
                          `firstname` varchar(30) DEFAULT NULL,
                          `lastname` varchar(30) DEFAULT NULL,
