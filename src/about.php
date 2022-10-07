@@ -42,7 +42,7 @@ include('navbar.php');
                         href="https://www.ict-berufsbildung.ch/grundbildung/ict-lehren/auslaufende-bildungsverordnungen"
                         class="text-reset">(BiVo 2014)</a></p>
             <p class="fs-4">Unfortunately we do not have real pizzas.</p>
-            <a class="btn col-4 btn-warning btn-lg" href="https://www.google.com/search?q=Order+Pizza">Order a real
+            <a class="btn col-4 btn-danger btn-lg" href="https://www.google.com/search?q=Order+Pizza">Order a real
                 pizza here!</a>
             <a class="btn col-4 btn-dark btn-lg" href="https://github.com/YesterDavid135/pizzataxi">Check out our GitHub
                 Repository!</a>

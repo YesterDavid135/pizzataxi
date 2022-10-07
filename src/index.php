@@ -37,7 +37,7 @@ session_start();
                     <?php }
                     ?>
                     <p class="fs-4">Pizzataxi will deliver the beast pizzas directly in your mouth</p>
-                    <a class="btn btn-warning btn-lg" href="menu.php">Order now</a>
+                    <a class="btn btn-danger btn-lg" href="menu.php">Order now</a>
                 </div>
             </div>
         </div>
