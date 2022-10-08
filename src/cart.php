@@ -100,8 +100,10 @@ include('navbar.php');
                                             <i class="fas fa-minus"></i>
                                         </button>
 
-                                        <input id="form1" min="0" name="quantity" value="<?=$cartarray[$row['pizza_id']]?>" type="number"
+                                        <input id="form1" min="0" name="quantity" value="<?=$cartarray[$row['pizza_id']]?>"
+                                               type="number"
                                                class="form-control form-control-sm"/>
+                                        <!-- todo forward changes to session -->
 
                                         <button class="btn btn-link px-2">
                                             <i class="fas fa-plus"></i>
@@ -112,6 +114,7 @@ include('navbar.php');
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                         <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                        <!-- todo remove from session -->
                                     </div>
                                 </div>
                             </div>

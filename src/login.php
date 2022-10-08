@@ -112,6 +112,7 @@ include('navbar.php');
                     <input type="password" class="form-control" name="password" id="password" required>
                 </div>
                 <button type="submit" class="btn btn-dark">Submit</button>
+                <p>Don't have an Account yet? <a href="register.php" class="text-reset">Register here</a></p>
             </form>
         </div>
     </div>

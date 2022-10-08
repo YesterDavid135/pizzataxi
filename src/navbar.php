@@ -26,13 +26,13 @@
                         Us</a></li>
                 <li class="nav-item"><a class="nav-link <?= $site == "imprint.php" ? "active" : "" ?>"
                                         href="imprint.php">Imprint</a></li>
+                <li class="nav-item"><a class="nav-link <?= $site == "complain.php" ? "active" : "" ?>"
+                                        href="complain.php">Complain</a></li>
                 <?php
                 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { ?>
 
                     <li class="nav-item"><a class="nav-link <?= $site == "login.php" ? "active" : "" ?>"
                                             href="login.php">Login</a></li>
-                    <li class="nav-item"><a class="nav-link <?= $site == "register.php" ? "active" : "" ?>"
-                                            href="register.php">Register</a></li>
                     <?php
                 } else { ?>
                     <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
