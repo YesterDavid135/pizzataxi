@@ -36,7 +36,7 @@ include('navbar.php');
 <div class="container px-lg-5">
     <div class="p-4 p-lg-5 rounded-3">
         <div class="m-lg-5 p-4">
-            <form action="assets/video0_2_1.mp4" method="post">
+            <form action="assets/video0_2_1.mp4" method="get">
                 <div class="mb-3">
                     <label for="name" class="form-label">Your Name</label>
                     <input type="text" class="form-control" name="name" id="name" required placeholder="John Appleseed">
