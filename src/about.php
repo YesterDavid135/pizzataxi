@@ -48,7 +48,6 @@ include('navbar.php');
                 Repository!</a>
         </div>
     </div>
-
 </div>
 <!-- Footer-->
 <footer class="py-5 bg-dark mt-auto">
