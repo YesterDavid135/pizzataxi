@@ -29,8 +29,11 @@
                                         href="menu.php">Menu</a></li>
                 <li class="nav-item"><a class="nav-link <?= $site == "cart.php" ? "active" : "" ?>"
                                         href="cart.php">Cart</a></li>
+                <li class="nav-item"><a class="nav-link <?= $site == "tracker.php" ? "active" : "" ?>"
+                                        href="tracker.php">Order Tracker</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More
                     </a>
                     <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
