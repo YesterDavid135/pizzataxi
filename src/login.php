@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                $_SESSION['userid'] = $row['id'];
+                $_SESSION['userid'] = $row['user_id'];
 
                 session_regenerate_id(true);
 
