@@ -95,12 +95,12 @@ VALUES (1, 'Margherita', 'The standard', 12, NULL, 'margherita.jpg', 1),
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`
 (
-    `user_id`                        int(11)    NOT NULL,
-                         `username` varchar(30) NOT NULL,
-                         `firstname` varchar(30) DEFAULT NULL,
-                         `lastname` varchar(30) DEFAULT NULL,
-                         `mail` varchar(100) DEFAULT NULL,
-                         `password` varchar(255) DEFAULT NULL
+    `user_id`   int(11)     NOT NULL,
+    `username`  varchar(30) NOT NULL UNIQUE,
+    `firstname` varchar(30)  DEFAULT NULL,
+    `lastname`  varchar(30)  DEFAULT NULL,
+    `mail`      varchar(100) DEFAULT NULL,
+    `password`  varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

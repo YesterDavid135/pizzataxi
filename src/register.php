@@ -12,50 +12,70 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $firstname = htmlspecialchars(trim($_POST['firstname']));
 
         if (empty($firstname) || strlen($firstname) > 30) {
-            $error .= "Please enter e valid firstname<br />";
+            $error .= "Please enter e valid firstname (Max 30 chars)<br />";
         }
     } else {
-        $error .= "Please enter e valid firstname<br />";
+        $error .= "Please enter a firstname<br />";
     }
 
     if (isset($_POST['lastname'])) {
         $lastname = htmlspecialchars(trim($_POST['lastname']));
 
         if (empty($lastname) || strlen($lastname) > 30) {
-            $error .= "Please enter e valid lastname<br />";
+            $error .= "Please enter e valid lastname (Max 30 chars)<br />";
         }
     } else {
-        $error .= "Please enter e valid lastname<br />";
+        $error .= "Please enter a lastname<br />";
     }
 
     if (isset($_POST['email'])) {
         $email = htmlspecialchars(trim($_POST['email']));
 
         if (empty($email) || strlen($email) > 100 || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            $error .= "Please enter e valid mail address<br />";
+            $error .= "Please enter e valid mail address (Max 100 chars)<br />";
         }
     } else {
-        $error .= "Please enter e valid mail address<br />";
+        $error .= "Please enter a mail address<br />";
     }
 
     if (isset($_POST['username'])) {
         $username = htmlspecialchars(trim($_POST['username']));
 
-        if (empty($username) || !preg_match("/[a-zA-Z]{6,30}/", $username)) {
-            $error .= "Please enter e valid username<br />";
+        if (empty($username) || !preg_match("/[a-zA-Z1-9]{5,30}/", $username)) {
+            $error .= "Please enter e valid username (Only Letters and Numbers, 5-30 Chars)<br />";
+        } else {
+            $query = "select username from users where username = ?";
+
+            $stmt = $link->prepare($query);
+            if ($stmt === false) {
+                $error .= 'prepare() failed ' . $link->error . '<br />';
+            }
+
+            if (!$stmt->bind_param('s', $username)) {
+                $error .= 'bind_param() failed ' . $link->error . '<br />';
+            }
+
+            if (!$stmt->execute()) {
+                $error .= 'execute() failed ' . $link->error . '<br />';
+            }
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                $error .= "Username already taken";
+            }
+
         }
     } else {
-        $error .= "Please enter e valid username<br />";
+        $error .= "Please enter a username<br />";
     }
 
     if (isset($_POST['password'])) {
         $password = trim($_POST['password']);
 
-        if (empty($password) || !preg_match("/^([\W\w])([^\s]){6,100}$/", $password)) {
-            $error .= "Please enter e valid password<br >";
+        if (empty($password) || !preg_match("/^([\W\w])([^\s]){7,100}$/", $password)) {
+            $error .= "Please enter e valid password (No whitespaces, 8 - 100 Chars)<br >";
         }
     } else {
-        $error .= "Please enter e valid password<br />";
+        $error .= "Please enter a password<br />";
     }
     if (!isset($_POST['password_conf']) || $_POST['password_conf'] != $_POST['password']) {
         $error .= "Passwords doesn't match";
@@ -139,23 +159,27 @@ include('navbar.php');
             <form action="" method="post">
                 <div class="mb-3">
                     <label for="firstname" class="form-label">First Name</label>
-                    <input type="text" class="form-control" name="firstname" id="firstname" required maxlength="30">
+                    <input type="text" class="form-control" name="firstname" id="firstname" required maxlength="30"
+                           value="<?= $firstname ?>">
                 </div>
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" name="lastname" id="lastname" required maxlength="30">
+                    <input type="text" class="form-control" name="lastname" id="lastname" required maxlength="30"
+                           value="<?= $lastname ?>">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" required maxlength="100">
+                    <input type="email" class="form-control" name="email" id="email" required maxlength="100"
+                           value="<?= $email ?>">
                 </div>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" required maxlength="30">
+                    <input type="text" class="form-control" name="username" id="username" required minlength="5"
+                           maxlength="30" value="<?= $username ?>">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" required maxlength="255">
+                    <input type="password" class="form-control" name="password" id="password" required maxlength="100">
                 </div>
                 <div class="mb-3">
                     <label for="password_conf" class="form-label">Confirm Password</label>

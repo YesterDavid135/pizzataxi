@@ -105,7 +105,8 @@ include('navbar.php');
             <form action="" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" required>
+                    <input type="text" class="form-control" name="username" id="username" required
+                           value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
