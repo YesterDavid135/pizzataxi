@@ -104,6 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
             $_SESSION['userid'] = $result->fetch_assoc()['LAST_INSERT_ID()'];
+            $_SESSION['admin'] = 0;
+
             $link->close();
             header('Location: index.php');
             exit();
