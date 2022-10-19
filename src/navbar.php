@@ -37,7 +37,7 @@
                         More
                     </a>
                     <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="complain.php">Complain</a>
+                        <a class="dropdown-item" href="complaint.php">Complaint</a>
                         <a class="dropdown-item" href="about.php">About us</a>
                         <a class="dropdown-item" href="imprint.php">Imprint</a>
                     </div>
@@ -47,8 +47,8 @@
                         Us</a></li>
                 <li class="nav-item"><a class="nav-link <?/*= $site == "imprint.php" ? "active" : "" */?>"
                                         href="imprint.php">Imprint</a></li>
-                <li class="nav-item"><a class="nav-link <?/*= $site == "complain.php" ? "active" : "" */?>"
-                                        href="complain.php">Complain</a></li>-->
+                <li class="nav-item"><a class="nav-link <?/*= $site == "complaint.php" ? "active" : "" */?>"
+                                        href="complaint.php">Complain</a></li>-->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <?php
                 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { ?>
