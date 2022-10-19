@@ -1,7 +1,36 @@
 <?php
 session_start();
 include('config.php');
+if (isset($_GET['delete'])){
+    // Delete Order_Items
+    $query = 'delete o from order_items o join orders o2 on o.fk_order = o2.order_id where o.fk_order = ? && o2.fk_user = ?';
+    $stmt = $link->prepare($query);
 
+    if ($stmt === false) {
+        $error .= 'prepare() failed ' . $link->error . '<br />';
+    }
+    if (!$stmt->bind_param("ii", $_GET['delete'], $_SESSION['userid'])) {
+        $error .= 'bind_param() failed ' . $link->error . '<br />';
+    }
+    if (!$stmt->execute()) {
+        $error .= 'execute() failed ' . $link->error . '<br />';
+    }
+
+    // Delete Order
+    $query = 'delete from orders where order_id = ? && fk_user = ?';
+    $stmt = $link->prepare($query);
+
+    if ($stmt === false) {
+        $error .= 'prepare() failed ' . $link->error . '<br />';
+    }
+    if (!$stmt->bind_param("ii", $_GET['delete'], $_SESSION['userid'])) {
+        $error .= 'bind_param() failed ' . $link->error . '<br />';
+    }
+    if (!$stmt->execute()) {
+        $error .= 'execute() failed ' . $link->error . '<br />';
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -78,6 +107,13 @@ include('navbar.php');
                         </div>
                         <div class="col-2">
                             <p>Total: <?= $total[0] ?> CHF</p>
+                        </div>
+                        <div class="col-2">
+                            <?php if (isset($_SESSION['userid']) && $_SESSION['userid'] == $row['fk_user'] ) { ?>
+                            <a class="btn btn-danger" href="tracker.php?delete=<?=$row['order_id']?>">Delete Order</a>
+                            <?php } else { ?>
+                            <button class="btn btn-danger" disabled>Delete Order</button>
+                            <?php } ?>
                         </div>
 
                     </div>

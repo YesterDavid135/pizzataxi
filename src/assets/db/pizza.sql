@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
                           `order_id` int(11) NOT NULL,
                           `fk_user` int(11) DEFAULT NULL,
-                          `status` int(11) NOT NULL DEFAULT '0',
+                          `status` varchar(255) NULL DEFAULT null,
                           `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
