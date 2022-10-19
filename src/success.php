@@ -40,7 +40,7 @@ include('navbar.php');
         <div class="m-4 m-lg-5 text-center">
             <p class="fs-4">Your order has been successfully placed.</p>
             <a class="btn col-4 btn-danger btn-lg" href=index.php>Back to home</a>
-            <a class="btn col-4 btn-dark btn-lg" href=>View your orders</a>
+            <a class="btn col-4 btn-dark btn-lg" href="tracker.php?userid=<?=$_SESSION['userid']?>">View your orders</a>
         </div>
     </div>
 </div>

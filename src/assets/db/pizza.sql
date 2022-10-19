@@ -73,18 +73,18 @@ CREATE TABLE `pizzas`(
 --
 
 INSERT INTO `pizzas` (`pizza_id`, `name`, `description`, `price`, `discount`, `image`, `active`)
-VALUES (1, 'Margherita', 'The standard', 12, NULL, 'margherita.jpg', 1),
-       (2, 'Prosciutto', 'With happy pigs', 17, NULL, 'prosciutto.jpg', 1),
-       (3, 'Salami', 'With unhappy pigs', 17, NULL, 'salami.jpg', 1),
-       (4, 'Brokkoli', 'Only for Vivi', 15.5, NULL, 'brokkoli.jpg', 1),
-       (5, 'Funghi', 'With mario\'s mushrooms', 16, NULL, 'funghi.jpg', 1),
-       (6, 'Hawaii', 'No..', 99, NULL, 'hawaii.jpg', 1),
-       (7, 'Piccante', 'You are hot', 17, NULL, 'piccante.jpg', 1),
-       (8, 'Tonno', 'Greta loves u', 17, NULL, 'tonno.jpg', 1),
-       (9, 'Quattro formaggi', '1kg of pleasure', 18, NULL, '4formaggi.jpg', 1),
+VALUES (1, 'Margherita', 'The standard', 12, 0, 'margherita.jpg', 1),
+       (2, 'Prosciutto', 'With happy pigs', 17, 0, 'prosciutto.jpg', 1),
+       (3, 'Salami', 'With unhappy pigs', 17, 0, 'salami.jpg', 1),
+       (4, 'Brokkoli', 'Only for Vivi', 15.5, 0, 'brokkoli.jpg', 1),
+       (5, 'Funghi', 'With mario\'s mushrooms', 16, 0, 'funghi.jpg', 1),
+       (6, 'Hawaii', 'No..', 99, 0, 'hawaii.jpg', 1),
+       (7, 'Piccante', 'You are hot', 17, 0, 'piccante.jpg', 1),
+       (8, 'Tonno', 'Greta loves u', 17, 0, 'tonno.jpg', 1),
+       (9, 'Quattro formaggi', '1kg of pleasure', 18, 0, '4formaggi.jpg', 1),
        (10, 'Napoli', 'Delicious', 15, 11, 'napoli.jpg', 1),
-       (11, 'Speciale', 'What is wrong with u?', 20, NULL, 'speciale.jpg', 1),
-       (12, 'Swiss', 'we don\'t eat it ourselves, we just sell it to tourists', 22, NULL, 'swiss.jpg', 1);
+       (11, 'Speciale', 'What is wrong with u?', 20, 0, 'speciale.jpg', 1),
+       (12, 'Swiss', 'we don\'t eat it ourselves, we just sell it to tourists', 22, 0, 'swiss.jpg', 1);
 
 -- --------------------------------------------------------
 

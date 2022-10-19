@@ -30,9 +30,9 @@ $orderid = $orderid->fetch_assoc()['LAST_INSERT_ID()'];
 //Create Order Items
 
 foreach (array_keys($_SESSION['cart']) as $key) {
-    $query = 'INSERT INTO order_items (quantity, fk_order, fk_pizza) values (?, ?, ?)';
+    $query = 'INSERT INTO order_items (quantity, fk_order, fk_pizza, discount) values (?, ?, ?, (select discount from pizzas where pizza_id = ?));';
     $stmt = $link->prepare($query);
-    if (!$stmt->bind_param('iii', $_SESSION['cart'][$key], $orderid, $key)) {
+    if (!$stmt->bind_param('iiii', $_SESSION['cart'][$key], $orderid, $key, $key)) {
         echo 'bind_param() failed ' . $link->error . '<br />';
         exit();
     }
@@ -40,6 +40,7 @@ foreach (array_keys($_SESSION['cart']) as $key) {
         echo 'execute() failed ' . $link->error . '<br />';
         exit();
     }
+
 }
 $_SESSION['cart'] = array();
 header('Location: success.php');

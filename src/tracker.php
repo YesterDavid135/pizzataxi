@@ -44,7 +44,7 @@ include('navbar.php');
         $result = null;
         if (isset($_GET['userid']) && $_GET['userid'] != -1) {
 
-            $query = "SELECT o.*, u.username FROM orders o join users u on u.user_id = o.fk_user where o.fk_user = ?";
+            $query = "SELECT o.*, u.username FROM orders o join users u on u.user_id = o.fk_user where o.fk_user = ? order by timestamp desc";
             $stmt = $link->prepare($query);
 
             if ($stmt === false) {
@@ -58,20 +58,33 @@ include('navbar.php');
             }
             $result = $stmt->get_result();
         } else {
-            $sql = "SELECT o.*, u.username FROM orders o join users u on u.user_id = o.fk_user";
-            $result = $link->query($sql);
+            $query = "SELECT o.*, u.username FROM orders o join users u on u.user_id = o.fk_user order by timestamp desc";
+            $result = $link->query($query);
         }
 
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
+                $totalsql = "select sum(o.quantity * p.price - p.price / 100 * o.discount) as total from order_items o join pizzas p on p.pizza_id = o.fk_pizza where fk_order = " . $row['order_id'];
+
+                $total = $link->query($totalsql);
+                $total = $total->fetch_row();
                 ?>
                 <div class="row gx-lg-5">
                     <h3>Order #<?= $row['order_id'] ?> from <?= $row['username'] ?></h3>
-                    <p class="">Timestamp: <?= $row['timestamp'] ?></p>
+                    <div class="row">
+                        <div class="col-4">
+                            <p class="">Timestamp: <?= $row['timestamp'] ?></p>
+                        </div>
+                        <div class="col-2">
+                            <p>Total: <?= $total[0] ?> CHF</p>
+                        </div>
+
+                    </div>
                     <?php
-                    $query = "select o.*, p.name, p.image, p.price from order_items o join pizzas p on o.fk_pizza = p.pizza_id where fk_order = " . $row['order_id'];
-                    $result2 = $link->query($query);
+                    $sql = "select o.*, p.name, p.image, p.price from order_items o join pizzas p on o.fk_pizza = p.pizza_id where fk_order = " . $row['order_id'];
+                    $result2 = $link->query($sql);
+
                     if ($result2->num_rows > 0) {
                         // output data of each row
                         while ($row2 = $result2->fetch_assoc()) { ?>
@@ -91,7 +104,7 @@ include('navbar.php');
                                             </div>
                                             <div class="col-2">
                                                 <?php
-                                                if ($row2['discount'] == null) { ?>
+                                                if ($row2['discount'] == null || $row2['discount'] == 0) { ?>
                                                     <p class="lead fw-normal mb-2">
                                                         <strong><?= $row2['price'] * $row2['quantity'] ?>
                                                             CHF</strong></p>
