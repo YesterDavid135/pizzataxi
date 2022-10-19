@@ -31,6 +31,11 @@
                                         href="cart.php">Cart</a></li>
                 <li class="nav-item"><a class="nav-link <?= $site == "tracker.php" ? "active" : "" ?>"
                                         href="tracker.php">Order Tracker</a></li>
+                <?php
+                if (isset($_SESSION['loggedin']) && $_SESSION['admin'] = 1) {?>
+                    <li class="nav-item"><a class="nav-link <?= $site == "admin.php" ? "active" : "" ?>"
+                                            href="admin.php">Admin Center</a></li>
+                <?php } ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

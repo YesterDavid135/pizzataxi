@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($error)) {
-        $query = "SELECT user_id, username, password from users where username = ?";
+        $query = "SELECT user_id, username, password, admin from users where username = ?";
         $stmt = $link->prepare($query);
 
         if ($stmt === false) {
@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 $_SESSION['userid'] = $row['user_id'];
+                $_SESSION['admin'] = $row['admin'];
 
                 session_regenerate_id(true);
 
