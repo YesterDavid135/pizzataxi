@@ -21,6 +21,16 @@ SET time_zone = "+00:00";
 -- Database: `pizzataxi`
 --
 
+drop table if exists order_items;
+
+drop table if exists orders;
+
+drop table if exists pizzas;
+
+drop table if exists users;
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -100,7 +110,8 @@ CREATE TABLE `users`
     `firstname` varchar(30)  DEFAULT NULL,
     `lastname`  varchar(30)  DEFAULT NULL,
     `mail`      varchar(100) DEFAULT NULL,
-    `password`  varchar(255) DEFAULT NULL
+    `password`  varchar(255) DEFAULT NULL,
+    `admin` tinyint(1) not null default 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

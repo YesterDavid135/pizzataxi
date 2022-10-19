@@ -29,6 +29,7 @@ include('navbar.php');
         <div class="p-4 p-lg-5 rounded-3 text-center">
             <div class="m-2 m-lg-0">
                 <h1 class="display-5 fw-bold">Choose a pizza</h1>
+                <p class="fs-4 text-danger">Discount changes every 15 Minutes</p>
             </div>
         </div>
     </div>

@@ -36,6 +36,7 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="refresh" content="500">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
@@ -61,6 +62,7 @@ include('navbar.php');
         <div class="p-4 p-lg-5 rounded-3 text-center">
             <div class="m-4 m-lg-5">
                 <h1 class="display-5 fw-bold">Shopping Cart</h1>
+                <p class="fs-4 text-danger">Discount changes every 15 Minutes</p>
             </div>
         </div>
     </div>
