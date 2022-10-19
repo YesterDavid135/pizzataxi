@@ -4,7 +4,7 @@
 
 # ***INSTALLATION GUIDE***
 
-1. **Install a webserver with PHP and a mysql Server**
+1. **Install a webserver containing PHP and mysql Server**
    <br> Install a server yourself or choose a option below
       - Windows: [Installation Guide xampp](https://www.wikihow.com/Install-XAMPP-for-Windows)
       - MAC: [Installation Guide MAMP](https://documentation.mamp.info/en/MAMP-Mac/Installation/)
