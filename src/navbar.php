@@ -32,7 +32,7 @@
                 <li class="nav-item"><a class="nav-link <?= $site == "tracker.php" ? "active" : "" ?>"
                                         href="tracker.php">Order Tracker</a></li>
                 <?php
-                if (isset($_SESSION['loggedin']) && $_SESSION['admin'] = 1) {?>
+                if (isset($_SESSION['loggedin']) && $_SESSION['admin'] == 1) {?>
                     <li class="nav-item"><a class="nav-link <?= $site == "admin.php" ? "active" : "" ?>"
                                             href="admin.php">Admin Center</a></li>
                 <?php } ?>
