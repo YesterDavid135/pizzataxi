@@ -17,10 +17,15 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
     if ($pizza) {
         // Product exists in database, now we can create/update the session variable for the cart
         if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-            
+
             if (array_key_exists($pizza_id, $_SESSION['cart'])) {
-                // Product exists in cart so just update the quanity
-                $_SESSION['cart'][$pizza_id]++;
+                if (isset($_POST['quantity'])) {
+                    $quantity = (int)$_POST['quantity'];
+                    $_SESSION['cart'][$pizza_id] = $quantity;
+                } else {
+                    // Product exists in cart so just update the quanity
+                    $_SESSION['cart'][$pizza_id]++;
+                }
             } else {
                 // Product is not in cart so add it
                 $_SESSION['cart'][$pizza_id] = 1;
@@ -30,7 +35,7 @@ if (isset($_POST['pizza_id']) && is_numeric($_POST['pizza_id'])) {
             $_SESSION['cart'] = array($pizza_id => 1);
         }
     }
-    // Prevent form resubmission...
+// Prevent form resubmission...
     header('location: cart.php');
 } ?>
 <!DOCTYPE html>
@@ -90,29 +95,41 @@ include('navbar.php');
                                 <div class="row d-flex justify-content-between align-items-center">
                                     <div class="col-md-2 col-lg-2 col-xl-2">
                                         <img
-                                                src="assets/pizzas/<?=$row['image']?>"
+                                                src="assets/pizzas/<?= $row['image'] ?>"
                                                 class="img-fluid rounded-3" alt="Cotton T-shirt">
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2"><?=$row['name']?> </p>
-                                        <p><?=$row['description']?></p>
+                                        <p class="lead fw-normal mb-2"><?= $row['name'] ?> </p>
+                                        <p><?= $row['description'] ?></p>
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                        <button class="btn btn-link px-2">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
+                                        <form action="cart.php" method="post">
+                                            <input name="pizza_id" value="<?= $row['pizza_id'] ?>" hidden>
+                                            <input min="0" name="quantity"
+                                                   value="<?= $cartarray[$row['pizza_id']] ?>"
+                                                   type="number"
+                                                   class="form-control form-control-sm"/>
+                                            <!-- todo forward changes to session -->
 
-                                        <input id="form1" min="0" name="quantity" value="<?=$cartarray[$row['pizza_id']]?>"
-                                               type="number"
-                                               class="form-control form-control-sm"/>
-                                        <!-- todo forward changes to session -->
-
-                                        <button class="btn btn-link px-2">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
+                                            <button type="submit" class="btn btn-outline-success px-2">
+                                                Change
+                                            </button>
+                                        </form>
                                     </div>
                                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h5 class="mb-0">CHF <?=$row['price']?></h5>
+                                        <?php if ($row["discount"]) { ?>
+                                            <div>
+                                                <p class="link-dark fw-bold text-decoration-line-through"><?= $row["price"] * $cartarray[$row['pizza_id']] ?>
+                                                    CHF </p>
+                                                <h4 class="link-danger fw-bold "><?= ($row["price"] / 100) * (100 - $row["discount"]) * $cartarray[$row['pizza_id']] ?>
+                                                    CHF <span class="badge bg-danger"><?= $row["discount"] ?>%</span>
+                                                </h4>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div>
+                                                <h4 class="link-dark fw-bold"><?= $row["price"] * $cartarray[$row['pizza_id']] ?>
+                                                    CHF</h4>
+                                            </div> <?php } ?>
                                     </div>
                                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                         <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
@@ -137,7 +154,6 @@ include('navbar.php');
         } ?>
     </div>
 
-    </div>
 </section>
 <!-- Footer-->
 <footer class="py-5 bg-dark mt-auto">
