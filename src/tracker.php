@@ -168,6 +168,8 @@ include('navbar.php');
 
             ?>
 
+        <?php } else { ?>
+            <p>No Orders here</p>
         <?php } ?>
     </div>
 
