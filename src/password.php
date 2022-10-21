@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
                     $error .= 'execute() failed ' . $link->error . '<br />';
                 }
 
-                die();
+                $message = "Password Changed!";
 
             } else {
                 $error .= "Password is wrong";
