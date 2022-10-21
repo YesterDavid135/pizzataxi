@@ -12,11 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
     if (isset($_POST['password_old'])) {
         $password_old = htmlspecialchars(trim($_POST['password_old']));
         if (isset($_POST['password_new'])) {
+
             $password_new = trim($_POST['password_new']);
-            if ($password_new != trim($_POST['password_confirm'])){
-                $error .= "Password confirmation don't match";
-            }
-        }else {
+            if (empty($password_new) || !preg_match("/^([\W\w])([^\s]){7,100}$/", $password_new)) {
+                $error .= "Please enter e valid password (No whitespaces, 8 - 100 Chars)<br >";
+            } else
+                if ($password_new != trim($_POST['password_confirm'])) {
+                    $error .= "Password confirmation don't match";
+                }
+        } else {
             $error .= "Please enter a new Password";
         }
     } else {
@@ -43,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
             if (password_verify($password_old, $row['password'])) {
 
                 $password_hash = password_hash($password_new, PASSWORD_DEFAULT);
-                $query = "UPDATE users SET password = ? WHERE user_id = " . $_SESSION['userid'] ;
+                $query = "UPDATE users SET password = ? WHERE user_id = " . $_SESSION['userid'];
 
                 $stmt = $link->prepare($query);
                 if ($stmt === false) {
@@ -113,26 +117,26 @@ include('navbar.php');
             } else if (!empty($message)) {
                 echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
             }
-            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']){
-            ?>
-            <form action="" method="post">
-                <div class="mb-3">
-                    <label for="password" class="form-label">Old Password</label>
-                    <input type="password" class="form-control" name="password_old" id="password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">New Password</label>
-                    <input type="password" class="form-control" name="password_new" id="password" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" name="password_confirm" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-dark">Submit</button>
-            </form>
-            <?php }else{ ?>
-            <p>Please log in to change your password</p>
-           <?php } ?>
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
+                ?>
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Old Password</label>
+                        <input type="password" class="form-control" name="password_old" id="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" name="password_new" id="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirm" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            <?php } else { ?>
+                <p>Please log in to change your password</p>
+            <?php } ?>
         </div>
     </div>
 </div>
