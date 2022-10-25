@@ -41,20 +41,14 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More
                     </a>
-                    <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-dark">
                         <a class="dropdown-item" href="complaint.php">Complaint</a>
                         <a class="dropdown-item" href="about.php">About us</a>
                         <a class="dropdown-item" href="imprint.php">Imprint</a>
                     </div>
                 </li>
             </ul>
-             <!--   <li class="nav-item"><a class="nav-link <?/*= $site == "about.php" ? "active" : "" */?>" href="about.php">About
-                        Us</a></li>
-                <li class="nav-item"><a class="nav-link <?/*= $site == "imprint.php" ? "active" : "" */?>"
-                                        href="imprint.php">Imprint</a></li>
-                <li class="nav-item"><a class="nav-link <?/*= $site == "complaint.php" ? "active" : "" */?>"
-                                        href="complaint.php">Complain</a></li>-->
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <?php
                 if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { ?>
 
@@ -66,13 +60,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <?=$_SESSION['username']?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-dark">
                             <a class="dropdown-item" href="password.php">Change Password</a>
                             <a class="dropdown-item" href="logout.php">Log out</a>
                         </div>
                     </li>
-                  <!--  <li class="nav-item"><a class="nav-link <?/*= $site == "password.php" ? "active" : "" */?>" href="password.php">Change Password</a></li>
-                    <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>-->
                 <?php }
                 ?>
             </ul>
