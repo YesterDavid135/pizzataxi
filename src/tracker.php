@@ -1,19 +1,19 @@
 <?php
 session_start();
 include('config.php');
-if (isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     // Delete Order_Items
     $query = 'delete o from order_items o join orders o2 on o.fk_order = o2.order_id where o.fk_order = ? && o2.fk_user = ?';
     $stmt = $link->prepare($query);
 
     if ($stmt === false) {
-        $error .= 'prepare() failed ' . $link->error . '<br />';
+        $error .= 'prepare() failed ' . $link->error . '<br >';
     }
     if (!$stmt->bind_param("ii", $_GET['delete'], $_SESSION['userid'])) {
-        $error .= 'bind_param() failed ' . $link->error . '<br />';
+        $error .= 'bind_param() failed ' . $link->error . '<br >';
     }
     if (!$stmt->execute()) {
-        $error .= 'execute() failed ' . $link->error . '<br />';
+        $error .= 'execute() failed ' . $link->error . '<br >';
     }
 
     // Delete Order
@@ -21,13 +21,13 @@ if (isset($_GET['delete'])){
     $stmt = $link->prepare($query);
 
     if ($stmt === false) {
-        $error .= 'prepare() failed ' . $link->error . '<br />';
+        $error .= 'prepare() failed ' . $link->error . '<br >';
     }
     if (!$stmt->bind_param("ii", $_GET['delete'], $_SESSION['userid'])) {
-        $error .= 'bind_param() failed ' . $link->error . '<br />';
+        $error .= 'bind_param() failed ' . $link->error . '<br >';
     }
     if (!$stmt->execute()) {
-        $error .= 'execute() failed ' . $link->error . '<br />';
+        $error .= 'execute() failed ' . $link->error . '<br >';
     }
 
 }
@@ -36,17 +36,17 @@ if (isset($_GET['delete'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Pizzataxi</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet">
     <script async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
@@ -77,13 +77,13 @@ include('navbar.php');
             $stmt = $link->prepare($query);
 
             if ($stmt === false) {
-                $error .= 'prepare() failed ' . $link->error . '<br />';
+                $error .= 'prepare() failed ' . $link->error . '<br >';
             }
             if (!$stmt->bind_param("s", $_GET['userid'])) {
-                $error .= 'bind_param() failed ' . $link->error . '<br />';
+                $error .= 'bind_param() failed ' . $link->error . '<br >';
             }
             if (!$stmt->execute()) {
-                $error .= 'execute() failed ' . $link->error . '<br />';
+                $error .= 'execute() failed ' . $link->error . '<br >';
             }
             $result = $stmt->get_result();
         } else {
@@ -109,10 +109,11 @@ include('navbar.php');
                             <p>Total: <?= $total[0] ?> CHF</p>
                         </div>
                         <div class="col-2">
-                            <?php if (isset($_SESSION['userid']) && $_SESSION['userid'] == $row['fk_user'] ) { ?>
-                            <a class="btn btn-danger" href="tracker.php?delete=<?=$row['order_id']?>">Delete Order</a>
+                            <?php if (isset($_SESSION['userid']) && $_SESSION['userid'] == $row['fk_user']) { ?>
+                                <a class="btn btn-danger" href="tracker.php?delete=<?= $row['order_id'] ?>">Delete
+                                    Order</a>
                             <?php } else { ?>
-                            <button class="btn btn-danger" disabled>Delete Order</button>
+                                <button class="btn btn-danger" disabled>Delete Order</button>
                             <?php } ?>
                         </div>
 
@@ -171,8 +172,6 @@ include('navbar.php');
         <?php } else { ?>
             <p>No Orders here</p>
         <?php } ?>
-    </div>
-
     </div>
 </section>
 <!-- Footer-->

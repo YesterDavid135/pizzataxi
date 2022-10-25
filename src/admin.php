@@ -8,7 +8,7 @@ if ($_SESSION['admin'] == 0) {
 
 include('config.php');
 
-$error = $message =  '';
+$error = $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         if (strlen($status) > 255) {
-            $error .= "Please enter e valid comment (Max 255 chars)<br/>";
+            $error .= "Please enter e valid comment (Max 255 chars)<br>";
         }
     }
 
@@ -29,15 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $stmt = $link->prepare($query);
         if ($stmt === false) {
-            $error .= 'prepare() failed ' . $link->error . '<br />';
+            $error .= 'prepare() failed ' . $link->error . '<br >';
         }
 
         if (!$stmt->bind_param('si', $status, $_POST['order_id'])) {
-            $error .= 'bind_param() failed ' . $link->error . '<br />';
+            $error .= 'bind_param() failed ' . $link->error . '<br >';
         }
 
         if (!$stmt->execute()) {
-            $error .= 'execute() failed ' . $link->error . '<br />';
+            $error .= 'execute() failed ' . $link->error . '<br >';
         }
     }
 }
@@ -45,17 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Pizzataxi</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
 </head>
@@ -75,7 +75,6 @@ include('navbar.php');
     </div>
 </header>
 <!-- Page Content-->
-<section class="pt-4">
     <div class="container px-lg-5">
         <!-- Page Features-->
         <ul class="list-group">
@@ -89,19 +88,22 @@ include('navbar.php');
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     ?>
-                    <form action="" method="post">
-                        <li class="list-group-item">Order #<?= $row["order_id"] ?> / User: <?= $row["username"] ?> / <?= $row["timestamp"] ?>
+                    <li class="list-group-item">Order #<?= $row["order_id"] ?> / User: <?= $row["username"] ?>
+                        / <?= $row["timestamp"] ?>
+                        <form action="admin.php" method="post">
                             <div class="row">
                                 <div class="mb-3 col-9">
-                                    <input type="text" class="form-control" name="status" id="status" maxlength="255" value="<?= $row["status"] ?>" placeholder="Create a comment...">
+                                    <input type="text" class="form-control" name="status" maxlength="255"
+                                           value="<?= $row["status"] ?>" placeholder="Create a comment...">
                                 </div>
-                                <input name="order_id" id="order_id" value="<?= $row["order_id"] ?>" hidden>
+                                <input name="order_id" value="<?= $row["order_id"] ?>" hidden>
                                 <div class="col-2">
                                     <button type="submit" class="btn btn-dark">Submit</button>
                                 </div>
                             </div>
-                        </li>
-                    </form>
+                        </form>
+                    </li>
+
                     <?php
                 }
             }
@@ -109,7 +111,6 @@ include('navbar.php');
             ?>
         </ul>
     </div>
-</section>
 <!-- Footer-->
 <footer class="py-5 bg-dark mt-auto">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Pizzataxi 2022</p></div>

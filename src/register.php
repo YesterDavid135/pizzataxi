@@ -12,51 +12,51 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $firstname = htmlspecialchars(trim($_POST['firstname']));
 
         if (empty($firstname) || strlen($firstname) > 30) {
-            $error .= "Please enter e valid firstname (Max 30 chars)<br />";
+            $error .= "Please enter e valid firstname (Max 30 chars)<br >";
         }
     } else {
-        $error .= "Please enter a firstname<br />";
+        $error .= "Please enter a firstname<br >";
     }
 
     if (isset($_POST['lastname'])) {
         $lastname = htmlspecialchars(trim($_POST['lastname']));
 
         if (empty($lastname) || strlen($lastname) > 30) {
-            $error .= "Please enter e valid lastname (Max 30 chars)<br />";
+            $error .= "Please enter e valid lastname (Max 30 chars)<br >";
         }
     } else {
-        $error .= "Please enter a lastname<br />";
+        $error .= "Please enter a lastname<br >";
     }
 
     if (isset($_POST['email'])) {
         $email = htmlspecialchars(trim($_POST['email']));
 
         if (empty($email) || strlen($email) > 100 || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            $error .= "Please enter e valid mail address (Max 100 chars)<br />";
+            $error .= "Please enter e valid mail address (Max 100 chars)<br >";
         }
     } else {
-        $error .= "Please enter a mail address<br />";
+        $error .= "Please enter a mail address<br >";
     }
 
     if (isset($_POST['username'])) {
         $username = htmlspecialchars(trim($_POST['username']));
 
         if (empty($username) || !preg_match("/[a-zA-Z1-9]{5,30}/", $username)) {
-            $error .= "Please enter e valid username (Only Letters and Numbers, 5-30 Chars)<br />";
+            $error .= "Please enter e valid username (Only Letters and Numbers, 5-30 Chars)<br >";
         } else {
             $query = "select username from users where username = ?";
 
             $stmt = $link->prepare($query);
             if ($stmt === false) {
-                $error .= 'prepare() failed ' . $link->error . '<br />';
+                $error .= 'prepare() failed ' . $link->error . '<br >';
             }
 
             if (!$stmt->bind_param('s', $username)) {
-                $error .= 'bind_param() failed ' . $link->error . '<br />';
+                $error .= 'bind_param() failed ' . $link->error . '<br >';
             }
 
             if (!$stmt->execute()) {
-                $error .= 'execute() failed ' . $link->error . '<br />';
+                $error .= 'execute() failed ' . $link->error . '<br >';
             }
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         }
     } else {
-        $error .= "Please enter a username<br />";
+        $error .= "Please enter a username<br >";
     }
 
     if (isset($_POST['password'])) {
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $error .= "Please enter e valid password (No whitespaces, 8 - 100 Chars)<br >";
         }
     } else {
-        $error .= "Please enter a password<br />";
+        $error .= "Please enter a password<br >";
     }
     if (!isset($_POST['password_conf']) || $_POST['password_conf'] != $_POST['password']) {
         $error .= "Passwords doesn't match";
@@ -88,15 +88,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $stmt = $link->prepare($query);
         if ($stmt === false) {
-            $error .= 'prepare() failed ' . $link->error . '<br />';
+            $error .= 'prepare() failed ' . $link->error . '<br >';
         }
 
         if (!$stmt->bind_param('sssss', $firstname, $lastname, $username, $password_hash, $email)) {
-            $error .= 'bind_param() failed ' . $link->error . '<br />';
+            $error .= 'bind_param() failed ' . $link->error . '<br >';
         }
 
         if (!$stmt->execute()) {
-            $error .= 'execute() failed ' . $link->error . '<br />';
+            $error .= 'execute() failed ' . $link->error . '<br >';
         }
 
         if (empty($error)) {
@@ -116,17 +116,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Pizzataxi</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet">
     <script async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
@@ -158,7 +158,7 @@ include('navbar.php');
                 echo "<div class=\"alert alert-success\" role=\"alert\">" . $message . "</div>";
             }
             ?>
-            <form action="" method="post">
+            <form action="register.php" method="post">
                 <div class="mb-3">
                     <label for="firstname" class="form-label">First Name</label>
                     <input type="text" class="form-control" name="firstname" id="firstname" required maxlength="30"

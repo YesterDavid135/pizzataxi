@@ -32,13 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
         $stmt = $link->prepare($query);
 
         if ($stmt === false) {
-            $error .= 'prepare() failed ' . $link->error . '<br />';
+            $error .= 'prepare() failed ' . $link->error . '<br >';
         }
         if (!$stmt->bind_param("s", $_SESSION['userid'])) {
-            $error .= 'bind_param() failed ' . $link->error . '<br />';
+            $error .= 'bind_param() failed ' . $link->error . '<br >';
         }
         if (!$stmt->execute()) {
-            $error .= 'execute() failed ' . $link->error . '<br />';
+            $error .= 'execute() failed ' . $link->error . '<br >';
         }
         $result = $stmt->get_result();
 
@@ -51,15 +51,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
 
                 $stmt = $link->prepare($query);
                 if ($stmt === false) {
-                    $error .= 'prepare() failed ' . $link->error . '<br />';
+                    $error .= 'prepare() failed ' . $link->error . '<br >';
                 }
 
                 if (!$stmt->bind_param('s', $password_hash)) {
-                    $error .= 'bind_param() failed ' . $link->error . '<br />';
+                    $error .= 'bind_param() failed ' . $link->error . '<br >';
                 }
 
                 if (!$stmt->execute()) {
-                    $error .= 'execute() failed ' . $link->error . '<br />';
+                    $error .= 'execute() failed ' . $link->error . '<br >';
                 }
 
                 $message = "Password Changed!";
@@ -76,17 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['loggedin']) && $_SE
 ?>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Pizzataxi</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet">
     <script async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6177030326507154"
             crossorigin="anonymous"></script>
@@ -119,18 +119,19 @@ include('navbar.php');
             }
             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                 ?>
-                <form action="" method="post">
+                <form action="password.php" method="post">
                     <div class="mb-3">
-                        <label for="password" class="form-label">Old Password</label>
-                        <input type="password" class="form-control" name="password_old" id="password" required>
+                        <label for="password_old" class="form-label">Old Password</label>
+                        <input type="password" class="form-control" name="password_old" id="password_old" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">New Password</label>
-                        <input type="password" class="form-control" name="password_new" id="password" required>
+                        <label for="password_new" class="form-label">New Password</label>
+                        <input type="password" class="form-control" name="password_new" id="password_new" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" name="password_confirm" id="password" required>
+                        <label for="password_confirm" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirm" id="password_confirm"
+                               required>
                     </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
                 </form>
