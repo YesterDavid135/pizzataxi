@@ -148,9 +148,9 @@ include('navbar.php');
                                                 <?php } else { ?>
                                                     <p class="link-dark fw-bold text-decoration-line-through"><?= ($row2["price"] * $row2['quantity']) ?>
                                                         CHF </p>
-                                                    <h4 class="link-danger fw-bold "><?= ($row2["price"] / 100) * (100 - $row2["discount"]) ?>
+                                                    <h4 class="link-danger fw-bold "><?= ($row2["price"] / 100) * (100 - $row2["discount"]) * $row["quantity"] ?>
                                                         CHF <span
-                                                                class="badge bg-danger"><?= $row2["discount"] * $row2['quantity'] ?>%</span>
+                                                                class="badge bg-danger"><?= $row2["discount"]?>%</span>
                                                     </h4>
 
                                                 <?php } ?>
