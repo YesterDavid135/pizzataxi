@@ -13,5 +13,6 @@
 3. **Create a database and a user in mysql**
     <br> Use PHPMyAdmin to create a new database and a user for this project.
     <br> Execute [this script](https://github.com/YesterDavid135/pizzataxi/blob/main/src/assets/db/pizza.sql) in your database.
-4. **Start**
+4. Copy [src/config.example.php](src/config.example.php) to `config.php` and adjust the database variables.
+5. **Start**
     <br> Start your new Webserver and you're good to go.
