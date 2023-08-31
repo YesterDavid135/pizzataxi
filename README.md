@@ -1,6 +1,6 @@
 # Pizzataxi
 ## Projektarbeit Schulmodul 151
-## https://pizzataxi.gay
+## https://pizza.ydavid.ch
 
 # ***INSTALLATION GUIDE***
 
