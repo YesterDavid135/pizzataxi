@@ -101,13 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if (empty($error)) {
             $result = $link->query("SELECT LAST_INSERT_ID()");
-            $_SESSION['loggedin'] = true;
+            $_SESSION['loggedin'] = false;
             $_SESSION['username'] = $username;
             $_SESSION['userid'] = $result->fetch_assoc()['LAST_INSERT_ID()'];
             $_SESSION['admin'] = 0;
 
             $link->close();
-            header('Location: index.php');
+            header('Location: totp-gen.php');
             exit();
         }
     }

@@ -1,0 +1,19 @@
+{
+    "name": "ydavid/pizzataxi",
+    "description": "Pizzataxi Store",
+    "type": "project",
+    "require": {
+        "phpgangsta/googleauthenticator": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ydavid\\Pizzataxi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "david",
+            "email": "hello@ydavid.ch"
+        }
+    ]
+}

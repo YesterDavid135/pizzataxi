@@ -103,17 +103,23 @@ VALUES (1, 'Margherita', 'The standard', 12, 0, 'margherita.jpg', 1),
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users`
+create table users
 (
-    `user_id`   int(11)     NOT NULL,
-    `username`  varchar(30) NOT NULL UNIQUE,
-    `firstname` varchar(30)  DEFAULT NULL,
-    `lastname`  varchar(30)  DEFAULT NULL,
-    `mail`      varchar(100) DEFAULT NULL,
-    `password`  varchar(255) DEFAULT NULL,
-    `admin` tinyint(1) not null default 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+    user_id       int auto_increment
+        primary key,
+    username      varchar(30)          not null,
+    firstname     varchar(30)          null,
+    lastname      varchar(30)          null,
+    mail          varchar(100)         null,
+    password      varchar(255)         null,
+    admin         tinyint(1) default 0 not null,
+    totp_secret   varchar(16)          null,
+    totp_verified tinyint    default 0 null,
+    constraint id
+        unique (user_id),
+    constraint username
+        unique (username)
+);
 --
 -- Indexes for dumped tables
 --
