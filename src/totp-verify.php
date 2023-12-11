@@ -56,7 +56,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } else {
         echo "Wrong code your poor ass guy";
     }
+} else {
+    $query = "SELECT totp_verified from users where user_id = ?  limit 1";
+
+    $stmt = $link->prepare($query);
+    $error = "";
+    if ($stmt === false) {
+        $error .= 'prepare() failed ' . $link->error . '<br >';
+    }
+
+    if (!$stmt->bind_param('i', $userid)) {
+        $error .= 'bind_param() failed ' . $link->error . '<br >';
+    }
+
+    if (!$stmt->execute()) {
+        $error .= 'execute() failed ' . $link->error . '<br >';
+    }
+
+    if ($error) {
+        echo "Lost"; //todo noeeele
+        exit();
+    }
+
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        if ($row['totp_verified'] == 0) {
+            header('Location: totp-gen.php');
+        }
+    }
 }
+
 ?>
 <form action="totp-verify.php" method="POST">
     <label>Verify One Time Password</label>
