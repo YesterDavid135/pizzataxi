@@ -8,7 +8,6 @@ if (!isset($_SESSION['loggedin'])
     || $_SESSION['loggedin'] //Not Logged in
     || !isset($_SESSION['userid'])) { //but user id is set (should be only after register)
     header("Location: index.php");
-    //todo fix this
 }
 $userid = $_SESSION['userid'];
 $username = $_SESSION['username'];
