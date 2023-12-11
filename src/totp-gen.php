@@ -91,7 +91,7 @@ if (!$stmt->execute()) {
     $error .= 'execute() failed ' . $link->error . '<br >';
 }
 
-if ($error != "" && $stmt->affected_rows == 0) {
+if ($error != "" || $stmt->affected_rows == 0) {
     echo "error, lol"; //todo noel, yk °^°
     exit();
 }
