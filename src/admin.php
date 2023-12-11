@@ -94,7 +94,7 @@ include('navbar.php');
                             <div class="row">
                                 <div class="mb-3 col-9">
                                     <input type="text" class="form-control" name="status" maxlength="255"
-                                           value="<?= $row["status"] ?>" placeholder="Create a comment...">
+                                           value="<?= htmlspecialchars($row["status"]) ?>" placeholder="Create a comment...">
                                 </div>
                                 <input name="order_id" value="<?= $row["order_id"] ?>" hidden>
                                 <div class="col-2">
