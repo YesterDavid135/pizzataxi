@@ -74,26 +74,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 } else {
     $secret = $g->createSecret();
-}
-$query = "UPDATE users SET totp_secret = ? where user_id = ? AND totp_verified = 0";
 
-$stmt = $link->prepare($query);
-$error = "";
-if ($stmt === false) {
-    $error .= 'prepare() failed ' . $link->error . '<br >';
-}
+    $query = "UPDATE users SET totp_secret = ? where user_id = ? AND totp_verified = 0";
 
-if (!$stmt->bind_param('si', $secret, $userid)) {
-    $error .= 'bind_param() failed ' . $link->error . '<br >';
-}
+    $stmt = $link->prepare($query);
+    $error = "";
+    if ($stmt === false) {
+        $error .= 'prepare() failed ' . $link->error . '<br >';
+    }
 
-if (!$stmt->execute()) {
-    $error .= 'execute() failed ' . $link->error . '<br >';
-}
+    if (!$stmt->bind_param('si', $secret, $userid)) {
+        $error .= 'bind_param() failed ' . $link->error . '<br >';
+    }
 
-if ($error != "" || $stmt->affected_rows == 0) {
-    echo "error, lol"; //todo noel, yk °^°
-    exit();
+    if (!$stmt->execute()) {
+        $error .= 'execute() failed ' . $link->error . '<br >';
+    }
+
+    if ($error != "" || $stmt->affected_rows == 0) {
+        echo "error, lol"; //todo noel, yk °^°
+        exit();
+    }
 }
 
 $qrCodeUrl = $g->getQRCodeGoogleUrl($username, $secret, "PizzaTaxi");
