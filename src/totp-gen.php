@@ -8,8 +8,8 @@ $g = new \PHPGangsta_GoogleAuthenticator();
 if (!isset($_SESSION['loggedin'])
     || $_SESSION['loggedin'] //Not Logged in
     || !isset($_SESSION['userid'])) { //but user id is set (should be only after register)
-    echo "Nope";  //todo noel display something nice here
-    exit();
+    header("Location: index.php");
+    //todo fix this
 }
 $userid = $_SESSION['userid'];
 $username = $_SESSION['username'];
@@ -18,7 +18,6 @@ $secret = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     if (!isset($_POST['totp'])) {
-        echo "Please give me totp"; //todo noel do it again, lol
         exit();
     }
 
@@ -40,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($error) {
-        echo "Lost"; //todo noeeele
+        $error .= "Oops, something went wrong...<br>";
         exit();
     }
 
@@ -50,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($g->verifyCode($secret, $totp, 2)) {
-        echo "hooray";
         $query = "UPDATE users SET totp_verified = 1 where user_id = ?";
 
         $stmt = $link->prepare($query);
@@ -67,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $error .= 'execute() failed ' . $link->error . '<br >';
             exit();
         }
-        echo "Yay it worked!";
         $_SESSION['loggedin'] = true;
         header('Location: index.php');
     } else {
@@ -93,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($error != "" || $stmt->affected_rows == 0) {
-        echo "error, lol"; //todo noel, yk °^°
+        $error .= "Oops, something went wrong...<br>";
         exit();
     }
 }
@@ -131,9 +128,9 @@ $qrCodeUrl = $g->getQRCodeGoogleUrl($username, $secret, "PizzaTaxi");
             </div>
         </div>
     </header>
-    <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 rounded-3">
-            <div class="m-lg-5 pb-4">
+    <div class="container px-5">
+        <div class="p-4 p-5 rounded-3">
+            <div class="mb-5 pb-4">
                 <?php
                 if (!empty($error)) {
                     echo "<div class=\"alert alert-danger\" role=\"alert\">" . $error . "</div>";
