@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     $totp = htmlspecialchars(trim($_POST['totp']));
-    $query = "SELECT totp_secret from users where user_id = ? limit 1";
+    $query = "SELECT totp_secret from users where user_id = ? and totp_verified = 0 limit 1";
 
     $stmt = $link->prepare($query);
     $error = "";
