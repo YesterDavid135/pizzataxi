@@ -3,7 +3,9 @@
 session_start();
 
 if ($_SESSION['admin'] == 0) {
-    header("Location: index.php");
+    header('HTTP/1.1 401 Unauthorized');
+    header("Location: 401.php");
+    exit;
 }
 
 include('config.php');

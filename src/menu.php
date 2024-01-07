@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <?php
 session_start();
+// Include config file
+require_once "config.php";
+
+// Prepare a select statement
+$sql = "SELECT * FROM pizzas where active = 1";
+
+$result = $link->query($sql);
+
 ?>
 <html lang="en">
 <head>
@@ -40,14 +48,6 @@ include('navbar.php');
         <!-- Page Features-->
         <div class="row gx-lg-5">
             <?php
-            // Include config file
-            require_once "config.php";
-
-            // Prepare a select statement
-            $sql = "SELECT * FROM pizzas where active = 1";
-
-            $result = $link->query($sql);
-
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
